@@ -3544,7 +3544,10 @@ Layer.prototype.queryRelatedRecords = function(qparams, callback, errback) {
    */
   MapOverlay.prototype.draw = function () {
     if (!this.drawing_ || this.needsNewRefresh_ === true) {
-      this.refresh(); 
+      if (!this.drawRefreshed_) {
+        this.refresh(); 
+        this.drawRefreshed_ = true;
+      }
     }
   };
 
